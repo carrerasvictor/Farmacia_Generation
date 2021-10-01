@@ -22,7 +22,7 @@ public class Produto {
 
 	@NotBlank
 	@Size(min = 1, max = 100)
-	private String nomeProduto;
+	private String nome;
 
 	@NotBlank
 	@Size(min = 1, max = 300)
@@ -44,12 +44,12 @@ public class Produto {
 		this.idProduto = idProduto;
 	}
 
-	public String getNomeProduto() {
-		return nomeProduto;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeProduto(String nomeProduto) {
-		this.nomeProduto = nomeProduto;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getDescricao() {
