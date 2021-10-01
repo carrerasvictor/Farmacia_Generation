@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * @author Victor
- * @version 1.1
+ * @version 1.0
  */
 @Entity
 public class Categoria {
