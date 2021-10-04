@@ -1,6 +1,5 @@
 package com.genFarma.genFarma.model;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +29,7 @@ public class Produto {
 
 	@NotBlank
 	@Column(length = 10, precision = 2)
-	private double preco;
+	private Double preco;
 
 	@NotBlank
 	@Size(min = 1, max = 50)
@@ -75,5 +74,4 @@ public class Produto {
 	public void setSubcategoria(String subcategoria) {
 		this.subcategoria = subcategoria;
 	}
-
 }
