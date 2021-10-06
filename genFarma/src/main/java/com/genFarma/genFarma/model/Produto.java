@@ -5,8 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * @author Victor
@@ -34,6 +38,15 @@ public class Produto {
 	@NotBlank
 	@Size(min = 1, max = 50)
 	private String subcategoria;
+
+	/**
+	 * @author Joao
+	 * @version 1.0
+	 */
+	@ManyToOne
+	@JoinColumn(name = "fk_categoria")
+	@JsonIgnoreProperties({ "produtos" })
+	private Categoria categoriaRelacionada;
 
 	public Long getIdProduto() {
 		return idProduto;
@@ -73,5 +86,13 @@ public class Produto {
 
 	public void setSubcategoria(String subcategoria) {
 		this.subcategoria = subcategoria;
+	}
+
+	public Categoria getCategoriaRelacionada() {
+		return categoriaRelacionada;
+	}
+
+	public void setCategoriaRelacionada(Categoria categoriaRelacionada) {
+		this.categoriaRelacionada = categoriaRelacionada;
 	}
 }
