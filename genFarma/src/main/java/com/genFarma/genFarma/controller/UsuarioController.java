@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.genFarma.genFarma.model.Usuario;
 import com.genFarma.genFarma.model.dtos.CredenciaisDTO;
@@ -56,8 +57,18 @@ public class UsuarioController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(novoUsuario));
 	}
 
-	@PutMapping("/credenciais")
-	public ResponseEntity<CredenciaisDTO> credenciais(@Valid @RequestBody UsuarioLoginDTO usuarioParaAutenticar) {
+	@PostMapping("/cadastro")
+	public ResponseEntity<Object> salvar(@Valid @RequestBody Usuario novoUsuario) {
+		return service.cadastrarUsuario(novoUsuario).map(resp -> ResponseEntity.status(201).body(resp))
+				.orElseThrow(() -> {
+					throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+							"Email existente, cadastre outro email!.");
+				});
+
+	}
+
+	@PutMapping("/login")
+	public ResponseEntity<CredenciaisDTO> logar(@Valid @RequestBody UsuarioLoginDTO usuarioParaAutenticar) {
 		return service.pegarCredenciais(usuarioParaAutenticar);
 	}
 
