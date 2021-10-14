@@ -10,8 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * @author Team Sinergia
@@ -27,13 +30,15 @@ public class Usuario {
 	@NotBlank
 	private String nome;
 
-	@Email
+	@ApiModelProperty(example = "email@email.com.br")
+	@NotNull(message = "O atributo email é Obrigatório!")
+	@Email(message = "O atributo email deve ser válido!")
 	private String email;
 
 	@NotBlank
 	@Size(min = 8, max = 100)
 	private String senha;
-	
+
 	/**
 	 * @author Priscila
 	 * @version 1.0
